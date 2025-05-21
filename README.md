@@ -1,9 +1,3 @@
----
-title: smart-find
-app_file: gradio_app.py
-sdk: gradio
-sdk_version: 5.30.0
----
 # SmartFind: Attribute-Aware Semantic Product Search
 An end-to-end semantic product search engine that blends **metadata-driven filtering** with **semantic retrieval and reranking.**
 
@@ -94,6 +88,7 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 ![alt text](./images/SmartFind-2.png)
 ![alt text](./images/SmartFind-3.png)
 
+---
 
 ## Pure Semantic Search Output
 ![alt text](./images/Pure%20Semantic-1.png)
