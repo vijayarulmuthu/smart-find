@@ -3,6 +3,7 @@
 .env
 .files
 .chainlit/
+.gradio
 .venv/
 __pycache__/
 smart_find.egg-info/

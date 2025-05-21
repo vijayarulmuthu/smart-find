@@ -83,4 +83,13 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 
 ---
 
-## Output
+## SmartFind Output
+![alt text](./images/SmartFind-1.png)
+![alt text](./images/SmartFind-2.png)
+![alt text](./images/SmartFind-3.png)
+
+
+## Pure Semantic Search Output
+![alt text](./images/Pure Semantic-1.png)
+![alt text](./images/Pure Semantic-2.png)
+![alt text](./images/Pure Semantic-3.png)
