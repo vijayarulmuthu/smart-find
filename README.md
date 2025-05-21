@@ -42,6 +42,7 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 ## Architecture
 ![alt text](./images/architecture.png)
 
+
 ### 1️⃣ Feature Extraction Pipeline
 
 - Drops rows with missing price/rating
