@@ -1,29 +1,41 @@
-# Base image with Python + pip
-FROM python:3.11-slim
+# Get a distribution that has uv already installed
+FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim
 
-# Set environment variables
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-ENV PORT=7860
-
-# Set working directory
-WORKDIR /app
-
-# Install system dependencies
+# Add Rust compiler installation
+USER root
 RUN apt-get update && apt-get install -y \
-    build-essential \
     curl \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
 
-# Copy app code
-COPY . /app
+# Add user - this is the user that will run the app
+# If you do not set user, the app will run as root (undesirable)
+RUN useradd -m -u 1000 user
+USER user
 
-# Install Python dependencies
-RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
+# Set up Rust for the user
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/home/user/.cargo/bin:${PATH}"
 
-# Expose Chainlit default port
-EXPOSE $PORT
+# Set the home directory and path
+ENV HOME=/home/user \
+    PATH=/home/user/.local/bin:$PATH        
 
-# Command to run Chainlit app
-CMD ["chainlit", "run", "ui_app.py", "--port", "7860", "--host", "0.0.0.0"]
+#ENV UVICORN_WS_PROTOCOL=websockets
+
+# Set the working directory
+WORKDIR $HOME/app
+
+# Copy the app to the container
+COPY --chown=user . .
+
+# Install the dependencies
+RUN uv sync
+
+# Expose the port
+EXPOSE 7860
+
+# Run Gradio app
+CMD ["uv", "run", "gradio", "app/ui_app.py"]
