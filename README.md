@@ -90,6 +90,6 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 
 
 ## Pure Semantic Search Output
-![alt text](./images/Pure Semantic-1.png)
-![alt text](./images/Pure Semantic-2.png)
-![alt text](./images/Pure Semantic-3.png)
+![alt text](./images/Pure%20Semantic-1.png)
+![alt text](./images/Pure%20Semantic-2.png)
+![alt text](./images/Pure%20Semantic-3.png)
