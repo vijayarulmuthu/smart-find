@@ -1,5 +1,5 @@
 # Get a distribution that has uv already installed
-FROM ghcr.io/astral-sh/uv:python3.11-bookworm-slim
+FROM ghcr.io/astral-sh/uv:python3.13-bookworm-slim
 
 # Add Rust compiler installation
 USER root
@@ -38,4 +38,4 @@ RUN uv sync
 EXPOSE 7860
 
 # Run Gradio app
-CMD ["uv", "run", "gradio", "app/ui_app.py"]
+CMD ["uv", "run", "gradio", "gradio_app.py"]

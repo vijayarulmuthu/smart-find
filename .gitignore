@@ -3,12 +3,10 @@
 .env
 .files
 .gradio/certificate.pem
-.chainlit/
-.gradio
+.gradio/
 .venv/
 __pycache__/
 smart_find.egg-info/
 app/__pycache__/
 core/__pycache__/
 data/.DS_Store
-.gradio/certificate.pem
