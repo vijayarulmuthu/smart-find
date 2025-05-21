@@ -1,5 +1,5 @@
 # SmartFind: Attribute-Aware Semantic Product Search
-SmartFind: an end-to-end semantic product search engine that blends **metadata-driven filtering** with **semantic retrieval and reranking.**
+An end-to-end semantic product search engine that blends **metadata-driven filtering** with **semantic retrieval and reranking.**
 
 ## Problem Statement
 
@@ -80,3 +80,7 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 - **Local Qdrant Locking**: Use remote Qdrant for concurrent multi-process access
 - **Telemetry**: Track reranker quality, filter miss rates, and user feedback
 - **Tagging Model**: Replace LLM tagger with fast lightweight classifier if needed
+
+---
+
+## Output
