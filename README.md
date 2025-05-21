@@ -1,4 +1,5 @@
-# Attribute-Aware Semantic Product Search
+# SmartFind: Attribute-Aware Semantic Product Search
+SmartFind: an end-to-end semantic product search engine that blends **metadata-driven filtering** with **semantic retrieval and reranking.**
 
 ## Problem Statement
 
@@ -29,7 +30,7 @@ We will build a next-generation semantic product search engine powered by **Quer
 
 The end-user benefits from fast, context-aware, and relevant results — whether they search by keyword, description, or preference.
 
-### Tooling Stack
+### Technology Stack
 
 * **LLM**: `gpt-4.1` – Query decomposition, tag generation
 * **Embedding Model**: `text-embedding-3-small` – Lightweight, scalable vector encoding
@@ -67,12 +68,12 @@ The end-user benefits from fast, context-aware, and relevant results — whether
 - Optionally performs **tag extraction** for filtering
 - Performs vector similarity search via Qdrant
 - Optionally applies **semantic reranking (Cohere)**
-- Appends product info (name + rating + price) to prompt
+- Appends product info (name + description + rating + price) to prompt
 - Uses GPT-4.1-mini to generate **final product recommendation markdown**
 
 ---
 
-## ⚠️ Optimization Opportunities
+### ⚠️ Optimization Opportunities
 
 - **Embedding Size Variation**: Consider chunking or dual-indexing (short + long form)
 - **LLM Bottlenecks**: Summarization and reranking can be parallelized or batched
