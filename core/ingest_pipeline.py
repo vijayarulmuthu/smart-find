@@ -1,13 +1,13 @@
-# ingest_pipeline.py
+# core/ingest_pipeline.py
 import uuid
 import pandas as pd
 
 from tqdm import tqdm
 from qdrant_client.http.models import PointStruct
 
-from core.llm_utils import get_embedding, call_chat, safe_json_parse
-from core.prompts import PRODUCT_TAGGING_PROMPT
-from core.vector_store import init_qdrant
+from utils.llm_utils import get_embedding, call_chat, safe_json_parse
+from utils.prompts import PRODUCT_TAGGING_PROMPT
+from utils.vector_store import init_qdrant
 
 # === CONFIG ===
 INPUT_CSV = "./data/rag_docs.csv"

@@ -1,5 +1,5 @@
 import gradio as gr
-from app.search_pipeline import search_pipeline
+from core.search_pipeline import search_pipeline
 
 # === MAIN FUNCTION ===
 def run_search(query, use_tags):

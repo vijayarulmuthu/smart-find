@@ -1,4 +1,4 @@
-# app/search_pipeline.py
+# core/search_pipeline.py
 import logging
 import os
 import time
@@ -8,9 +8,9 @@ from typing import List, Tuple
 
 from qdrant_client import models
 
-from core.llm_utils import get_embedding, call_chat, safe_json_parse, clean_rag_document
-from core.prompts import QUERY_TAGGING_PROMPT, RESEARCH_PROMPT
-from core.vector_store import get_qdrant_client
+from utils.llm_utils import get_embedding, call_chat, safe_json_parse, clean_rag_document
+from utils.prompts import QUERY_TAGGING_PROMPT, RESEARCH_PROMPT
+from utils.vector_store import get_qdrant_client
 
 # === CONFIG ===
 COLLECTION_NAME = "ecommerce-products"

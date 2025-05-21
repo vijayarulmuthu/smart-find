@@ -1,0 +1,19 @@
+# .modalignore
+
+# Ignore virtual environments
+.venv/
+__pycache__/
+
+# Ignore Git metadata
+.git/
+.gitignore
+.gitattributes
+
+# Ignore packaging and metadata
+smart_find.egg-info/
+
+# Ignore Mac system files
+.DS_Store
+
+# Ignore large or static directories not needed for deployment
+images/

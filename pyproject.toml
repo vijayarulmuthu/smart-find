@@ -20,6 +20,7 @@ dependencies = [
     "numpy",
     "cohere",
     "gradio",
+    "modal",
 ]
 
 [project.optional-dependencies]
@@ -38,15 +39,15 @@ line_length = 88
 
 [tool.setuptools]
 py-modules = [
-    "app.feature_extraction_pipeline",
-    "app.ingest_pipeline",
-    "app.search_agent",
-    "app.ui_app",
-    "core.llm_utils",
-    "core.prompts",
-    "core.vector_store",
+    "core.feature_extraction_pipeline",
+    "core.ingest_pipeline",
+    "core.search_pipeline",
+    "utils.llm_utils",
+    "utils.prompts",
+    "utils.vector_store",
+    "gradio_app",
 ]
 include-package-data = false
 
 [tool.setuptools.packages.find]
-exclude = ["data*", "qdrant_storage*"] 
+exclude = ["data*", "qdrant_storage*"]

@@ -1,10 +1,10 @@
-# feature_extraction_pipeline.py
+# core/feature_extraction_pipeline.py
 import uuid
 import pandas as pd
 import logging
 from pathlib import Path
 
-from core.llm_utils import build_rag_document, clean_rag_document
+from utils.llm_utils import build_rag_document, clean_rag_document
 
 # === CONFIG ===
 INPUT_PATH = "./data/amazon_co-ecommerce_sample.csv"
