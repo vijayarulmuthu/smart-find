@@ -16,10 +16,6 @@ dependencies = [
     "pandas",
     "tqdm",
     "qdrant-client",
-<<<<<<< HEAD
-=======
-    "chainlit",
->>>>>>> ebeedf8 (initial commit)
     "python-dotenv",
     "numpy",
     "cohere",
