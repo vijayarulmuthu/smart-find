@@ -1,0 +1,7 @@
+.env
+.files
+.chainlit/
+.venv/
+smart_find.egg-info/
+*.pyc
+__pycache__/
