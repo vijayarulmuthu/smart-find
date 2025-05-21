@@ -1,7 +1,10 @@
+*.pyc
+.DS_Store
 .env
 .files
 .chainlit/
 .venv/
 smart_find.egg-info/
-*.pyc
-__pycache__/
+app/__pycache__/
+core/__pycache__/
+data/.DS_Store
