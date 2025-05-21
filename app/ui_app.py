@@ -46,8 +46,4 @@ with gr.Blocks(title="SmartFind AI") as demo:
 
 # === LAUNCH ===
 if __name__ == "__main__":
-<<<<<<< HEAD
     demo.launch(share=True)
-=======
-    demo.launch()
->>>>>>> ebeedf8 (initial commit)

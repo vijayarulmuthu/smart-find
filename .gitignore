@@ -4,6 +4,7 @@
 .files
 .chainlit/
 .venv/
+__pycache__/
 smart_find.egg-info/
 app/__pycache__/
 core/__pycache__/
