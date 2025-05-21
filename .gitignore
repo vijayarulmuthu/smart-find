@@ -2,6 +2,7 @@
 .DS_Store
 .env
 .files
+.gradio/certificate.pem
 .chainlit/
 .gradio
 .venv/
