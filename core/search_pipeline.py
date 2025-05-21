@@ -21,7 +21,7 @@ COHERE_KEY = os.getenv("COHERE_API_KEY")
 
 # === LOGGING ===
 logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger("search_agent")
+logger = logging.getLogger("search_pipeline")
 
 # === INIT ===
 co = cohere.Client(COHERE_KEY)
@@ -40,6 +40,7 @@ def get_tags(query: str) -> List[str]:
     Returns:
         List[str]: A list of extracted metadata tags (e.g., ['lego', '3+', 'plastic']).
     """
+    logger.info(f"Extracting tags from query: '{query}'")
     raw_response = call_chat(LLM_MODEL, QUERY_TAGGING_PROMPT, query)
     return safe_json_parse(raw_response, key="tags", fallback="misc")
 
@@ -57,6 +58,7 @@ def build_metadata_filter(tags: List[str]) -> models.Filter:
     Returns:
         models.Filter: A Qdrant filter to restrict vector search results to tagged items.
     """
+    logger.info(f"Building metadata filter for tags: {tags}")
     conditions = [
         models.FieldCondition(key="tags", match=models.MatchValue(value=tag.lower()))
         for tag in tags if tag
@@ -130,7 +132,7 @@ def rerank_with_cohere(query: str, docs: List[Tuple]) -> List[Tuple]:
         List[Tuple]: Same tuples, reordered and extended with Cohere relevance score:
             (document, qdrant_score, reviews, price, rating, cohere_score)
     """
-    logger.info("🔁 Applying Cohere Reranker...")
+    logger.info(f"Applying Cohere Reranking to {len(docs)} documents")
     start = time.perf_counter()
 
     try:
@@ -157,8 +159,8 @@ def rerank_with_cohere(query: str, docs: List[Tuple]) -> List[Tuple]:
 
         reranked = sorted(reranked, key=score_key, reverse=True)
 
-        logger.info("📊 Top 3 Reranked Results:")
-        for i, (doc, _, _, price, rating, coh_score) in enumerate(reranked[:3]):
+        logger.info("📊 Top 5 Reranked Results:")
+        for i, (doc, _, _, price, rating, coh_score) in enumerate(reranked[:5]):
             logger.info(f"{i+1}. Score={coh_score:.4f} | Price=${price:.2f} | Rating={rating:.1f}")
 
         elapsed = time.perf_counter() - start
@@ -171,7 +173,7 @@ def rerank_with_cohere(query: str, docs: List[Tuple]) -> List[Tuple]:
         return docs
 
 # === PLANNER + SUMMARIZER ===
-def generate_research_report(query: str, docs: list) -> str:
+def generate_summary_report(query: str, docs: list) -> str:
     """
     Generate a markdown-formatted product comparison report using LLM summarization.
 
@@ -182,6 +184,7 @@ def generate_research_report(query: str, docs: list) -> str:
     Returns:
         str: Markdown-formatted analysis and recommendations.
     """
+    logger.info(f"Generating summary report for query: '{query}'")
     context = "\n\n---\n\n".join([
         f"Product Description: {doc}\nUser Reviews: {reviews}\nPrice: {price}\nRating: {rating}\nVector Score: {vector_score}\nCohere Score: {cohere_score}"
         for doc, vector_score, reviews, price, rating, cohere_score in docs
@@ -204,7 +207,6 @@ def search_pipeline(user_query: str, use_reranker: bool = False, use_tags: bool 
         str: Markdown-formatted ranked result report.
     """
     tags = get_tags(user_query) if use_tags else []
-    logger.info(f"Extracted tags: {tags}")
 
     filter_obj = build_metadata_filter(tags) if tags else None
     docs = semantic_search(user_query, filter_obj)
@@ -212,7 +214,7 @@ def search_pipeline(user_query: str, use_reranker: bool = False, use_tags: bool 
     if use_reranker:
         docs = rerank_with_cohere(user_query, docs)
 
-    report = generate_research_report(user_query, docs)
+    report = generate_summary_report(user_query, docs)
     return report
 
 # === CLI TEST ===
