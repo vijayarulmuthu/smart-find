@@ -16,7 +16,7 @@ def run_search(query, use_tags):
 # === UI COMPONENTS ===
 with gr.Blocks(title="SmartFind AI") as demo:
     gr.Markdown("""
-    # 🔍 SmartFind: Attribute-Aware Semantic Product Search
+    # 🔍 SmartFind: Attribute-drive Semantic Product Search
 
     Enter a product search query and choose your search mode:
 
